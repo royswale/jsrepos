@@ -83,13 +83,15 @@
 
 
 		<script>
-
+			// cell is from getCell()
 			function onCell (cell) {
 				cell.className = 'on';
 			}
+			// cell is from getCell()
 			function offCell (cell) {
 				cell.className = '';
 			}
+			// do not forget to check boundary
 			function getCell (row, column) {
 				var row = document.getElementsByTagName('ul')[row];
 				var column = row.getElementsByTagName('li')[column];
@@ -97,6 +99,24 @@
 			}
 
 
+
+			// shapes array
+			var shapes = [{
+				'up': [[0,0], [1,0], [2,0], [2,1], [2,2]], // L
+				'right': [[0,0], [1,0], [2,0], [2,1], [2,2]],
+			},{
+				'up': [[0,0], [1,0], [2,0], [2,1], [2,2]], // L
+				'right': [[0,0], [1,0], [2,0], [2,1], [2,2]],
+			},
+
+			];
+
+
+
+			// window.onload = function()
+		 //    {
+		 //        document.getElementById("MyElement").addEventListener( 'click', changeClass);
+		 //    }
 
 // var nIntervId;
 
@@ -112,10 +132,6 @@
 // function stopTextColor() {
 // clearInterval(nIntervId);
 // }
-		  </script>
-
-		  <script>
-
 		  </script>
 	</body>
 </html>
