@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>2017-09-18</title>
+		<title>2017-09-19</title>
 
 		<style>
 			* {
@@ -14,10 +14,7 @@
 		</style>
 
 		<style>
-			/*
-			https://spin.atomicobject.com/2015/07/14/css-responsive-square/
-			响应式的方格
-			*/
+			/*https://spin.atomicobject.com/2015/07/14/css-responsive-square/*/
 			.square {
 				position: relative;
 				width: 20%;
@@ -41,7 +38,7 @@
 
 		<style>
 			.content {
-				background: pink;
+				background: #dedfe0
 			}
 
 			ul {
@@ -53,19 +50,10 @@
 			li {
 				list-style: none;
 
-				border: 1px solid red;
-				/*background: blue;*/
+				border: 1px solid #f7f8f9;
 				/*float: left;*/
 				display: inline-block;
-				/*
-				https://stackoverflow.com/questions/4969082/unwanted-margin-in-inline-block-list-items
-				把
-				<li></li>
-				<li></li>
-				变成
-				<li></li><li></li>
-				就解决了inline-block时，li元素之间有空白的问题
-				*/
+				/*https://stackoverflow.com/questions/4969082/unwanted-margin-in-inline-block-list-items*/
 				width: 12.5%;
 			  	height: 100%;
 			}
@@ -74,11 +62,11 @@
 
 		<style>
 			li.on {
-				background: aqua;
+				background: #e6f4f1;
 			}
 		</style>
 	</head>
-	<body>
+	<body onload="changeColor()">
 
 		<div class="square">
 		  <div class="content">
@@ -89,16 +77,30 @@
 		    <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
 		    <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
 		    <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
-		    <ul><li class="on"></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+		    <ul><li class="on" id="my_box"></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
 		  </div>
 		</div>
 
 
-		<script src="underscore-min.js"></script>
 		<script>
-			// setTimeInterval
-			// http://underscorejs.org/#times
+var nIntervId;
 
-		</script>
+function changeColor() {
+nIntervId = setInterval(flashText, 1000);
+}
+
+function flashText() {
+var oElem = document.getElementById('my_box');
+oElem.style.background = oElem.style.background == 'red' ? 'blue' : 'red';
+}
+
+function stopTextColor() {
+clearInterval(nIntervId);
+}
+		  </script>
+
+		  <script>
+
+		  </script>
 	</body>
 </html>
