@@ -107,20 +107,24 @@
 			// y 0~7 corresponding to getElementsByTagName array index
 			function getCell (p) {
 				var row = ULS[p['1']];
+				if (row == undefined) {return;}
 				var column = row.getElementsByTagName('li')[p['0']];
+				if (column == undefined) {return;}
 				return column;
 			}
 			function onCell (p) {
 				var cell = getCell(p);
+				if (cell == undefined) {return;}
 				cell.className = 'on';
 			}
 			function offCell (p) {
 				var cell = getCell(p);
+				if (cell == undefined) {return};
 				cell.className = '';
 			}
-			function testBoundary() {
-				if ( > LENGTH) {}
-			}
+			// function testBoundary() {
+			// 	if ( > LENGTH) {}
+			// }
 
 			// shapes array
 			// var shapes = [{
@@ -169,7 +173,16 @@
 					offCell(cell);
 					onCell(nextCell);
 
+					cell[0]= nextCell[0];
+					cell[1]= nextCell[1];
+					if (nextCell[1] >= 7) {
+						nextCell[1] = 0;
+					} else {
+						nextCell[1]++;
+					}
 
+					console.log(cell);
+					console.log(nextCell);
 				};
 
 
@@ -182,7 +195,7 @@
 					// keydown { target: <body>, key: "ArrowLeft", charCode: 0, keyCode: 37 }
 					// keydown { target: <body>, key: "ArrowRight", charCode: 0, keyCode: 39 }
 					// keydown { target: <body>, key: " ", charCode: 0, keyCode: 32 }
-					switch(event.keyCode){
+					switch(event.keyCode || event.which){
 						case 32:
 							console.log("Press Space to pause");
 							clearInterval(timer);
