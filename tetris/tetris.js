@@ -1,5 +1,11 @@
+
+// DOM object
 var ULS =document.getElementsByTagName('ul');
+
+// constant
 var LENGTH = ULS.length;
+
+
 
 // cell is from getCell()
 // function onCell (cell) {
