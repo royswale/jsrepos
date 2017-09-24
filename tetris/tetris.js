@@ -5,7 +5,16 @@ var ULS =document.getElementsByTagName('ul');
 // constant
 var LENGTH = ULS.length;
 
+// shapes
+// var shapes = [{
 
+// },{
+
+// },{
+
+// },{
+
+// }]
 
 // cell is from getCell()
 // function onCell (cell) {
