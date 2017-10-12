@@ -26,25 +26,25 @@ var addTwoNumbers = function(l1, l2) {
 
 
     do {
-    	sum = l1next.val + l2next.val + l3next.val;
+        sum = l1next.val + l2next.val + l3next.val;
 
-    	// Math.pow(10, power)
+        // Math.pow(10, power)
         remainder = sum % 10;
-    	quotient = (sum - remainder) / 10;
+        quotient = (sum - remainder) / 10;
 
-    	l3next.val = remainder;
+        l3next.val = remainder;
 
-    	l1next = l1next.next || new ListNode(0);
-    	l2next = l2next.next || new ListNode(0);
+        l1next = l1next.next || new ListNode(0);
+        l2next = l2next.next || new ListNode(0);
 
-    	if (l1next.val || l2next.val || l1next.next || l2next.next || quotient) {
+        if (l1next.val || l2next.val || l1next.next || l2next.next || quotient) {
 
-    		var node = new ListNode( quotient );
-			l3next.next = node;
-			l3next = node;
-    	} else {
-    		break;
-    	}
+            var node = new ListNode( quotient );
+            l3next.next = node;
+            l3next = node;
+        } else {
+            break;
+        }
 
     } while ( true );
 
