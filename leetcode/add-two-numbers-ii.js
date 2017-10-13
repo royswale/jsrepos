@@ -14,118 +14,92 @@ function ListNode(val) {
  */
 var addTwoNumbers = function(l1, l2) {
 
+    return arrayToList( addArray( listToArray(l1), listToArray(l2) ) );
 
-
-    // traverse singly-linked list.
-    var a = [];
-    var m = l1;
-    do {
-        a.push(m.val);
-        m = m.next;
-    } while ( m );
-
-    // console.log(a);
-
-    var b = new Array();
-    var n = l2;
-    do {
-        b.push(n.val);
-        n = n.next;
-    } while ( n );
-
-    // console.log(b);
-
-
-
-    // tostring
-    var x = parseInt(a.join(''));
-    var y = parseInt(b.join(''));
-    var z = x + y;
-
-    z = z.toString();
-    z = z.split('');
-    var l3 = new ListNode(0);
-    var l3next = l3;
-    for (var i = 0; i <= z.length - 1; i++) {
-        var node = new ListNode( parseInt(z[i]) );
-        l3next.next = node;
-        l3next = node;
-    }
-    return l3.next;
-    // parseint
-
-    // addition
-
-    // convert to singly-linked list
-
-    // var l3 = new ListNode(0);
-    // var l3next = l3;
-
-    // var l1next = l1;
-    // var l2next = l2;
-
-    // // var power = 1;
-    // var sum = 0;
-    // var quotient = 0;
-    // var remainder = 0;
-
-
-    // do {
-    //     sum = l1next.val + l2next.val + l3next.val;
-
-    //     // Math.pow(10, power)
-    //     remainder = sum % 10;
-    //     quotient = (sum - remainder) / 10;
-
-    //     l3next.val = remainder;
-
-    //     l1next = l1next.next || new ListNode(0);
-    //     l2next = l2next.next || new ListNode(0);
-
-    //     if (l1next.val || l2next.val || l1next.next || l2next.next || quotient) {
-
-    //         var node = new ListNode( quotient );
-    //         l3next.next = node;
-    //         l3next = node;
-    //     } else {
-    //         break;
-    //     }
-
-    // } while ( true );
-
-    // return l3;
 };
 
 
 
 
-// test case 1
-var l1 = new ListNode(2);
-l1.next = new ListNode(4);
-l1.next.next = new ListNode(3);
 
-var l2 = new ListNode(8);
-l2.next = new ListNode(5);
-l2.next.next = new ListNode(6);
-
+var l1 = arrayToList([7,2,4,3]);
+var l2 = arrayToList([5,6,4]);
 console.log( addTwoNumbers(l1, l2) );
-// addTwoNumbers(l1, l2);
 
-// Your input
+// [2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,9]
+// [5,6,4,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,2,4,3,9,9,9,9]
 
-// [2,4,3]
-// [5,6,4]
 
-// Your answer
+/**
+ * convert singly-linked list of ListNode to array of nodes' value
+ *
+ * @param ListNode
+ *
+ * @return array
+ *
+ */
+ function listToArray(list) {
+    var a = [];
 
-// [7,0,8]
+    do {
+        a.push(list.val);
+        list = list.next;
+    } while ( list );
 
-// Expected answer
+    return a;
+ }
 
-// [7,0,8]
 
-// // test case 2
-// Input:  	[1,6,0,3,3,6,7,2,0,1]
-// 			[6,3,0,8,9,6,6,9,6,1]
-// Output: 	[7,9]
-// Expected: 	[7,9,0,1,3,3,4,2,7,2]
+/**
+ * convert array to singly-linked list of ListNode
+ *
+ * @param array
+ *
+ * @return ListNode
+ *
+ */
+function arrayToList(array) {
+    var list = new ListNode(0); // dummy head
+    var listNext = list;// pointer
+
+    for (var i = 0; i < array.length; i++) {
+        var node = new ListNode( array[i] );
+        listNext.next = node;
+        listNext = node;
+    }
+
+    return list.next;
+}
+
+
+/**
+ * add to array with the most significant digit in the left
+ *
+ * @param array
+ * @param array
+ *
+ * @return array
+ *
+ */
+function addArray(a, b) {
+    a.reverse();
+    b.reverse();
+
+    var c = [];
+    var carry = 0;
+
+    var length = Math.max(a.length, b.length);
+
+    for (var i = 0; i < length; i++) {
+        var sum = ((a[i] != null) ? a[i] : 0) + ((b[i] != null) ? b[i] : 0) + carry;
+        var remainder = sum % 10;
+        carry = (sum == remainder) ? 0 : 1;
+        c.push(remainder);
+    }
+
+    if (carry) {
+        c.push(carry);
+    }
+
+    return c.reverse();
+}
