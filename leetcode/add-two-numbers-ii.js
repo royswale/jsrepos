@@ -24,7 +24,7 @@ var addTwoNumbers = function(l1, l2) {
         m = m.next;
     } while ( m );
 
-    console.log(a);
+    // console.log(a);
 
     var b = new Array();
     var n = l2;
@@ -33,15 +33,30 @@ var addTwoNumbers = function(l1, l2) {
         n = n.next;
     } while ( n );
 
-    console.log(b);
+    // console.log(b);
 
 
-    tostring
-    parseint
 
-    addition
+    // tostring
+    var x = parseInt(a.join(''));
+    var y = parseInt(b.join(''));
+    var z = x + y;
 
-    convert to singly-linked list
+    z = z.toString();
+    z = z.split('');
+    var l3 = new ListNode(0);
+    var l3next = l3;
+    for (var i = 0; i <= z.length - 1; i++) {
+        var node = new ListNode( parseInt(z[i]) );
+        l3next.next = node;
+        l3next = node;
+    }
+    return l3.next;
+    // parseint
+
+    // addition
+
+    // convert to singly-linked list
 
     // var l3 = new ListNode(0);
     // var l3next = l3;
@@ -93,8 +108,8 @@ var l2 = new ListNode(8);
 l2.next = new ListNode(5);
 l2.next.next = new ListNode(6);
 
-// console.log( addTwoNumbers(l1, l2) );
-addTwoNumbers(l1, l2);
+console.log( addTwoNumbers(l1, l2) );
+// addTwoNumbers(l1, l2);
 
 // Your input
 
