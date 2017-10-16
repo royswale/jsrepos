@@ -2,28 +2,66 @@
 #include <stdlib.h>
 #include <math.h>
 
+//double knightProbability(int,int,int,int);
+//int recursiveOnTimes(int,int,int,int);
 
-int offset[8][2] = {{-1,-2}, {-2,-1},
-                  {-1,2}, {-2, 1},
-                  {1,-2}, {2,-1},
-                  {1,2},{2,1}};
-
-
-
-double knightProbability(int,int,int,int);
-int recursiveOnTimes(int,int,int,int,int);
+int* cellProbability(int N);
 
 int main()
 {
-    printf("Hello world!\n");
-    printf("%f\n",knightProbability(3,2,0,0));
+    //printf("Hello world!\n");
+
+//    double p = knightProbability(8,30,6,4);
+//    printf("%f\n", p);
+//    printf("%.20f\n", p);
+    int * pa  = cellProbability(4);
+
     return 0;
 }
 
 
-double knightProbability(int N, int K, int r, int c) {
 
-    /*
+
+int* cellProbability(int N) {
+
+    int offset[8][2] = {{-1,-2}, {-2,-1},
+                  {-1,2}, {-2, 1},
+                  {1,-2}, {2,-1},
+                  {1,2},{2,1}};
+    int pa[N][N];
+    int a[2];
+
+    int r = 0;
+    int c = 0;
+    int k = 0;
+    int on = 0;
+
+    for(r = 0; r < N; r++){
+        for(c = 0; c < N; c++){
+            on = 0;
+            for(k = 0; k < 8; k++){
+                a[0] = r + offset[k][0];
+                a[1] = c + offset[k][1];
+                if(a[0] >= 0 && a[0] < N && a[1] >= 0 && a[1] < N) {
+                    //printf("[%d,%d]\n",a[0],a[1]);
+//                    if (k > 1) {
+//                        printf("recursive...%d\n", k);
+//                        on += recursiveOnTimes(N,k-1,a[0],a[1]);
+//                        printf("recursive...%d\n", k);
+//                    } else if ( k == 1 ) {
+                        on++;
+                    //}
+                }
+            }
+            pa[r][c] = on;
+            printf("[%d,%d] = %d\n", r, c, on);
+        }
+    }
+    //printf("on %d times on k %d\n",on,k);
+    return pa;
+}
+
+/*
      _____
     |*|_|_|
     |_|_|_|
@@ -33,36 +71,35 @@ double knightProbability(int N, int K, int r, int c) {
     +
     1/8 * 2/8
 
+    1/8 * 2/8
+    1/4 * (1/4 + 1/4)
     */
-
-    int onTimes = recursiveOnTimes(N,K,r,c,0);
-    double probability = onTimes / pow(8.0,N);
-    return probability;
-}
+//double knightProbability(int N, int K, int r, int c) {
+//    return recursiveOnTimes(N,K,r,c) / pow(8.0,K);
+//}
 
 
-int recursiveOnTimes(int N, int k, int r, int c, int onTimes) {
-    int j = 0;
-    int on = 0;
-    int a[2] = {r,c};
-
-    for(j = 0; j < 8; j++){
-        a[0] = r + offset[j][0];
-        a[1] = c + offset[j][1];
-        if(a[0] >= 0 && a[0] < N && a[1] >= 0 && a[1] < N) {
-            printf("[%d,%d]\n",a[0],a[1]);
-            on++;
-            if (k > 1) {
-                printf("recursive...%d\n", k);
-                recursiveOnTimes(N,k-1,a[0],a[1],onTimes);
-                printf("recursive...%d\n", k);
-            }
-        }
-    }
-    //proSum += pow(1/8.0,N-1) * (on / 8.0);
-    //printf("on %.20f times",on/8.0);
-    printf("on %d times\n",on);
-    ons += on;
-    return on;
-
-}
+//int recursiveOnTimes(int N, int k, int r, int c) {
+//    if (k == 0) {
+//        return 1;
+//    }
+//    int j = 0;
+//    int on = 0;
+//    int a[2] = {r,c};
+//    for(j = 0; j < 8; j++){
+//        a[0] = r + offset[j][0];
+//        a[1] = c + offset[j][1];
+//        if(a[0] >= 0 && a[0] < N && a[1] >= 0 && a[1] < N) {
+//            printf("[%d,%d]\n",a[0],a[1]);
+//            if (k > 1) {
+//                printf("recursive...%d\n", k);
+//                on += recursiveOnTimes(N,k-1,a[0],a[1]);
+//                printf("recursive...%d\n", k);
+//            } else if ( k == 1 ) {
+//                on++;
+//            }
+//        }
+//    }
+//    printf("on %d times on k %d\n",on,k);
+//    return on;
+//}
