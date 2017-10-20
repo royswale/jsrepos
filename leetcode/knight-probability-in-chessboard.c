@@ -19,20 +19,37 @@ int main()
     return 0;
 }
 
+// http://www.geeksforgeeks.org/probability-knight-remain-chessboard/
 
+bool knightIsOnBoard( int N, int r, int c ) {
+    if(r >= 0 && r < N && c >= 0 && c < N) {
+        return true;
+    }
+    return false;
+}
 
-
-int* cellProbability(int N) {
+int cellProbabilityAtKthStep(int N, int K, int r, int c) {
 
     int offset[8][2] = {{-1,-2}, {-2,-1},
                   {-1,2}, {-2, 1},
                   {1,-2}, {2,-1},
                   {1,2},{2,1}};
-    int pa[N][N];
-    int a[2];
+
+    int cp[N][N][K];
 
     int r = 0;
     int c = 0;
+
+    // K = 0 probability is 1
+    for(; r < N; r++){
+        for(; c < N; c++){
+            cp[r][c][0] = 1;
+        }
+    }
+
+
+    int a[2];
+
     int k = 0;
     int on = 0;
 
